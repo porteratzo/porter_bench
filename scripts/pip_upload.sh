@@ -1,4 +1,4 @@
-conda activate build
 rm -rf dist/*
-python setup.py sdist bdist_wheel
+python -m build
+twine check dist/*
 twine upload dist/*
