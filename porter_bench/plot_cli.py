@@ -25,12 +25,12 @@ def generate_plots(
     """Load benchmark records and generate all plots, saving them to output_dir.
 
     Args:
-        record_path: Root directory containing TICTOC_PERFORMANCE/ when
+        record_path: Root directory containing PORTER_BENCH_PERFORMANCE/ when
             only_latest=True, or a specific record directory when only_latest=False.
         output_dir: Directory to save generated plots. Defaults to 'PLOTS'.
         topics: Benchmarker names to plot. Defaults to all found in the record.
         show: Whether to display plots interactively in addition to saving.
-        only_latest: If True, auto-find the latest run under TICTOC_PERFORMANCE/.
+        only_latest: If True, auto-find the latest run under PORTER_BENCH_PERFORMANCE/.
             If False, treat record_path as a specific record directory.
     """
     print(f"Loading record from: {os.path.abspath(record_path)}")
@@ -127,7 +127,7 @@ def main() -> None:
         "--path",
         default=".",
         help=(
-            "Root directory containing TICTOC_PERFORMANCE/ (default: current dir). "
+            "Root directory containing PORTER_BENCH_PERFORMANCE/ (default: current dir). "
             "Use --no-latest to treat this as a specific record directory instead."
         ),
     )
@@ -154,7 +154,7 @@ def main() -> None:
         default=True,
         help=(
             "Treat --path as a specific record directory instead of "
-            "auto-finding the latest run under TICTOC_PERFORMANCE/"
+            "auto-finding the latest run under PORTER_BENCH_PERFORMANCE/"
         ),
     )
     args = parser.parse_args()

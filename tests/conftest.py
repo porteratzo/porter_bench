@@ -54,7 +54,7 @@ def saved_record(tmp_path, monkeypatch):
 
     Uses a GlobalBenchmarker so that the directory layout matches what
     load_record() / get_latest_record() expect:
-        <tmp_path>/TICTOC_PERFORMANCE/<timestamp>/test_*.json
+        <tmp_path>/PORTER_BENCH_PERFORMANCE/<timestamp>/test_*.json
     """
     monkeypatch.chdir(tmp_path)
     gb = GlobalBenchmarker()

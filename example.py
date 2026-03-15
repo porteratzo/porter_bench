@@ -13,7 +13,7 @@ from random import random
 import numpy as np
 from tqdm import tqdm
 
-from porter_bench import TICTOC_CUDA_AVAILABLE, bench_dict
+from porter_bench import PORTER_BENCH_CUDA_AVAILABLE, bench_dict
 from porter_bench.GlobalBenchmarker import IterBench
 
 # ── 1. Multi-step data-processing pipeline ────────────────────────────────────
@@ -144,7 +144,7 @@ def demo_cuda_memory() -> None:
 # ── Entry point ───────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
-    if TICTOC_CUDA_AVAILABLE:
+    if PORTER_BENCH_CUDA_AVAILABLE:
         print("CUDA detected — GPU memory tracking will run.")
     else:
         print("No GPU detected — CUDA demo will be skipped.")
@@ -153,11 +153,11 @@ if __name__ == "__main__":
     demo_training_loop()
     demo_memory_tracking()
 
-    if TICTOC_CUDA_AVAILABLE:
+    if PORTER_BENCH_CUDA_AVAILABLE:
         demo_cuda_memory()
     else:
         print("\n[4] Skipping CUDA demo.")
 
     print("\n[5] Saving all benchmarks…")
     bench_dict.save()
-    print("Done. Results written to TICTOC_PERFORMANCE/")
+    print("Done. Results written to PORTER_BENCH_PERFORMANCE/")

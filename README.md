@@ -27,7 +27,7 @@ for i in range(10):
 
     bench_dict["my_pipeline"].gstop()
 
-bench_dict.save()  # writes JSON files to TICTOC_PERFORMANCE/<timestamp>/
+bench_dict.save()  # writes JSON files to PORTER_BENCH_PERFORMANCE/<timestamp>/
 ```
 
 ## Usage
@@ -116,7 +116,7 @@ bench.set_save_on_step(True)  # save after every step
 from porter_bench.utils import load_record
 from porter_bench.DataHandler import DataHandler
 
-record = load_record(".")          # loads latest run from TICTOC_PERFORMANCE/
+record = load_record(".")          # loads latest run from PORTER_BENCH_PERFORMANCE/
 handler = DataHandler({"run": record})
 
 handler.plot_times(record_name="pipeline")
@@ -135,7 +135,7 @@ Plots are saved to `PLOTS/` as `<name>_times.png`, `<name>_bars.png`, `<name>_cr
 
 ## Output files
 
-All JSON files are written under `TICTOC_PERFORMANCE/<timestamp>/<name>/`:
+All JSON files are written under `PORTER_BENCH_PERFORMANCE/<timestamp>/<name>/`:
 
 | File | Contents |
 |---|---|
@@ -151,22 +151,22 @@ make lint    # pre-commit run --all-files
 make example # run example.py then generate_plots.py
 ```
 
-### TICTOC_TOGGLES
+### PORTER_BENCH_TOGGLES
 
-`TICTOC_TOGGLES` is an 8-bit binary string environment variable that exposes boolean feature flags for automating test variations without code changes. Each bit position is an independent toggle (index 0 = rightmost bit).
+`PORTER_BENCH_TOGGLES` is an 8-bit binary string environment variable that exposes boolean feature flags for automating test variations without code changes. Each bit position is an independent toggle (index 0 = rightmost bit).
 
 ```bash
-TICTOC_TOGGLES="00000001" pytest   # toggle 0 on
-TICTOC_TOGGLES="00000011" pytest   # toggles 0 and 1 on
-TICTOC_TOGGLES="10000000" pytest   # toggle 7 on
+PORTER_BENCH_TOGGLES="00000001" pytest   # toggle 0 on
+PORTER_BENCH_TOGGLES="00000011" pytest   # toggles 0 and 1 on
+PORTER_BENCH_TOGGLES="10000000" pytest   # toggle 7 on
 ```
 
-Inside the library, `TICTOC_TOGGLES` is parsed into a `list[bool]` of length 8, importable as:
+Inside the library, `PORTER_BENCH_TOGGLES` is parsed into a `list[bool]` of length 8, importable as:
 
 ```python
-from porter_bench import TICTOC_TOGGLES
+from porter_bench import PORTER_BENCH_TOGGLES
 
-if TICTOC_TOGGLES[0]:
+if PORTER_BENCH_TOGGLES[0]:
     # behaviour variant A
 else:
     # behaviour variant B

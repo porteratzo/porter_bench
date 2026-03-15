@@ -6,7 +6,7 @@ import time
 import pytest
 
 from porter_bench.MemoryBenchmarker import (
-    TICTOC_CUDA_AVAILABLE,
+    PORTER_BENCH_CUDA_AVAILABLE,
     MaxMemoryMonitor,
     MemoryBenchmarker,
 )
@@ -92,7 +92,7 @@ class TestMemoryBenchmarkerStepTracking:
         assert mb.memory_usage_list[0]["b"][0]["crono_counter"] == 1
 
 
-@pytest.mark.skipif(not TICTOC_CUDA_AVAILABLE, reason="CUDA not available")
+@pytest.mark.skipif(not PORTER_BENCH_CUDA_AVAILABLE, reason="CUDA not available")
 class TestCudaMemoryTracking:
     def test_cuda_memory_usage_keys(self):
         mb = MemoryBenchmarker()

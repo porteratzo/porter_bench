@@ -7,7 +7,7 @@ from typing import Dict, List, Optional, Union
 from .basic import get_timestamp
 from .Benchmarker import Benchmarker
 
-DEFAULT_SAVING_DIR = "TICTOC_PERFORMANCE"
+DEFAULT_SAVING_DIR = "PORTER_BENCH_PERFORMANCE"
 
 
 class GlobalBenchmarker:

@@ -68,7 +68,7 @@ Three singletons are created at import time:
 - `start()` — begins a fresh iteration without closing a previous one
 
 **GlobalBenchmarker** ([porter_bench/GlobalBenchmarker.py](porter_bench/GlobalBenchmarker.py)):
-- `bench_dict["name"]` lazily creates a `Benchmarker` with path `TICTOC_PERFORMANCE/<timestamp>/<name>`
+- `bench_dict["name"]` lazily creates a `Benchmarker` with path `PORTER_BENCH_PERFORMANCE/<timestamp>/<name>`
 - `bench_dict.save()` saves all managed benchmarkers to JSON
 
 **IterBench** ([porter_bench/GlobalBenchmarker.py](porter_bench/GlobalBenchmarker.py)):
@@ -84,7 +84,7 @@ Three singletons are created at import time:
 - Output files: `<file>_STEP_DICT_DATA.json`, `<file>_STEP_DICT_SUMMARY.json`, `<file>_MEMORY.json`
 
 **Data loading and analysis** ([porter_bench/utils.py](porter_bench/utils.py), [porter_bench/DataHandler.py](porter_bench/DataHandler.py)):
-- `load_record(path)` finds the latest run under `TICTOC_PERFORMANCE/` and returns a dict with keys `summary`, `absolutes`, `calls`, `memory`
+- `load_record(path)` finds the latest run under `PORTER_BENCH_PERFORMANCE/` and returns a dict with keys `summary`, `absolutes`, `calls`, `memory`
 - `DataHandler({"run_label": record})` accepts a dict of runs for multi-run comparison; provides `plot_times()`, `plot_memory_usage()`, `make_bars()`, `plot_crono()`, `plot_cuda_memory()`
 - `TimePlotter` / `MemoryPlotter` handle matplotlib rendering; `summurize()` computes mean/min/max/quantile-filtered stats
 
@@ -92,6 +92,6 @@ Three singletons are created at import time:
 - `set_save_on_gstop(N)` — saves every N global stops
 - `set_save_on_step(True)` — saves after every step call
 
-**Environment variable:** `TICTOC_TOGGLES` (8-bit binary string) controls feature toggles; defaults to `"00000000"`.
+**Environment variable:** `PORTER_BENCH_TOGGLES` (8-bit binary string) controls feature toggles; defaults to `"00000000"`.
 
-**CUDA support:** Optional; detected via `torch.cuda.is_available()` and exposed as `TICTOC_CUDA_AVAILABLE`.
+**CUDA support:** Optional; detected via `torch.cuda.is_available()` and exposed as `PORTER_BENCH_CUDA_AVAILABLE`.

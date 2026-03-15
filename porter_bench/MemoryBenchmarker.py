@@ -20,9 +20,9 @@ from .utils import APPENDED_MEMORY_NAME, filter_no_change, find_clusters
 try:
     import torch
 
-    TICTOC_CUDA_AVAILABLE = torch.cuda.is_available()
+    PORTER_BENCH_CUDA_AVAILABLE = torch.cuda.is_available()
 except ImportError:
-    TICTOC_CUDA_AVAILABLE = False
+    PORTER_BENCH_CUDA_AVAILABLE = False
 
 SPECIALS = True
 
@@ -95,7 +95,7 @@ class MemoryBenchmarker:
     def enable_cuda_memory_tracking(self) -> None:
         """Enable CUDA memory usage tracking."""
         with self._lock:
-            if TICTOC_CUDA_AVAILABLE:
+            if PORTER_BENCH_CUDA_AVAILABLE:
                 self.track_cuda_memory = True
 
     def disable_cuda_memory_tracking(self) -> None:
@@ -247,7 +247,7 @@ class MemoryBenchmarker:
         Returns:
             Dict[str, int]: A dictionary containing CUDA memory usage statistics.
         """
-        if TICTOC_CUDA_AVAILABLE:
+        if PORTER_BENCH_CUDA_AVAILABLE:
             return {
                 "allocated": torch.cuda.memory_allocated(),
                 "reserved": torch.cuda.memory_reserved(),
