@@ -30,6 +30,9 @@ classifiers = [
 [project.urls]
 Homepage = "https://github.com/porteratzo/porter_bench"
 
+[project.scripts]
+porter-bench-plots = "porter_bench.plot_cli:main"
+
 [project.optional-dependencies]
 examples = [
     "torch>=2.0.0",

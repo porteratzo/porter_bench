@@ -84,6 +84,32 @@ class GlobalBenchmarker:
             for bench in benchmarkers_snapshot:
                 bench.save_data()
 
+    def generate_plots(
+        self,
+        output_dir: str = "PLOTS",
+        topics: Optional[List[str]] = None,
+        show: bool = False,
+    ) -> None:
+        """Generate all plots for the last saved benchmark data.
+
+        Args:
+            output_dir: Directory to save plots. Defaults to 'PLOTS'.
+            topics: Benchmarker names to plot. Defaults to all.
+            show: Whether to display plots interactively.
+        """
+        from .plot_cli import generate_plots as _generate_plots
+
+        with self._lock:
+            record_path = self.default_path
+
+        _generate_plots(
+            record_path=record_path,
+            output_dir=output_dir,
+            topics=topics,
+            show=show,
+            only_latest=False,
+        )
+
 
 class IterBench:
     """Wrap an iterable and record a benchmark step on each iteration.
