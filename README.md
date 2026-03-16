@@ -125,13 +125,40 @@ handler.plot_crono(record_name="pipeline")
 handler.plot_memory_usage(record_name="memory")
 ```
 
-Or run the standalone script after `make example`:
+Or use the `porter-bench-plots` CLI (installed with the package):
 
 ```bash
-python generate_plots.py --path . --output PLOTS --show
+# Plot the latest run in the current directory
+porter-bench-plots
+
+# Specify search path and output directory
+porter-bench-plots --path /path/to/project --output PLOTS
+
+# Plot only specific benchmarker topics
+porter-bench-plots --topics pipeline training
+
+# Show plots interactively in addition to saving
+porter-bench-plots --show
+
+# Point directly at a specific record directory (skip auto-find)
+porter-bench-plots --path PORTER_BENCH_PERFORMANCE/2024-01-01_12-00-00/run --no-latest
 ```
 
-Plots are saved to `PLOTS/` as `<name>_times.png`, `<name>_bars.png`, `<name>_crono.png`, `<name>_memory.png`.
+Or invoke as a module:
+
+```bash
+python -m porter_bench.plot_cli --path . --output PLOTS --show
+```
+
+| Flag | Default | Description |
+|---|---|---|
+| `--path PATH` | `.` | Root dir containing `PORTER_BENCH_PERFORMANCE/`, or a specific record dir with `--no-latest` |
+| `--output DIR` | `PLOTS` | Directory to save generated plots |
+| `--topics A B …` | all | Restrict to specific benchmarker names |
+| `--show` | off | Display plots interactively in addition to saving |
+| `--no-latest` | off | Treat `--path` as a specific record directory instead of auto-finding the latest run |
+
+Plots are saved to `PLOTS/` as `<name>_times.png`, `<name>_bars.png`, `<name>_crono.png`, `<name>_memory.png`, and `<name>_cuda_memory.png` (if CUDA data is present).
 
 ## Output files
 

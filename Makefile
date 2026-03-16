@@ -12,4 +12,3 @@ install:
 
 example:
 	python example.py
-	python generate_plots.py

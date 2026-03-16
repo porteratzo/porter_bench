@@ -127,8 +127,9 @@ def main() -> None:
         "--path",
         default=".",
         help=(
-            "Root directory containing PORTER_BENCH_PERFORMANCE/ (default: current dir). "
-            "Use --no-latest to treat this as a specific record directory instead."
+            "Root directory containing PORTER_BENCH_PERFORMANCE/"
+            " (default: current dir)."
+            " Use --no-latest to pass a specific record directory instead."
         ),
     )
     parser.add_argument(

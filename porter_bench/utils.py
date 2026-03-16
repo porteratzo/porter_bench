@@ -122,6 +122,7 @@ def load_record(record_path: str, only_latest: bool = True) -> dict[str, Any]:
     record: dict[str, Any] = {}
     if only_latest:
         record_path = get_latest_record(record_path)
+        print(f"Auto-detected latest record: {record_path}")
     step_dict_data = load_raw_stepdict_data(record_path)
     memory_data = load_raw_memory_data(record_path)
 
